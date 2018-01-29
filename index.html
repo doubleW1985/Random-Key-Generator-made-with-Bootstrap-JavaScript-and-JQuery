@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+	
+		<title>Random Key Generator</title>
+		<script src="js/jquery.js"></script>
+		<script src="js/seedrandom.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<link rel="stylesheet"  href="css/bootstrap.min.css">
+
+		<style>
+			body{
+				margin:0px;
+				padding:0px;
+				background:Lavender url("bg/KBwithdrawal.jpg") center center fixed no-repeat;
+				background-size: cover;
+			}
+			
+			#info{
+				transition: all 5s ease;
+			}
+			
+			.panel{
+		    	background-color: rgba(245, 245, 245, 0.8);
+			}
+			
+			.panel-body{
+				/*text-align: center;*/
+				height: 36.5em;
+			}
+			
+			#randomTable {
+			    font-family: monospace;
+			    font-size: 2.0em;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<!--fixed-top navbar-->	
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+	    	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+	            </button>
+		      	<a class="navbar-brand" href="https://prac-double112.c9users.io/【JavaScript】Random Key Generator made with Bootstrap, JS and JQuery/">Key Generator</a>
+		    </div>
+		    
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			    <ul class="nav navbar-nav">
+			      <li class="active"><a href="https://prac-double112.c9users.io/【JavaScript】Random Key Generator made with Bootstrap, JS and JQuery/">Home</a></li>
+			      <li><a href="http://www.freepik.com">Freepik</a></li>
+			      <li><a href="http://www.flaticon.com">Flaticon</a></li>
+			      <li><a href="https://www.google.com.tw/">Google</a></li>
+			    </ul>
+		      	<form class="navbar-form navbar-right">
+					<div class="form-group">
+					    <input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+			</div>	
+		  </div>
+		</nav>	
+			
+		<!--float search bar-->
+		<a href="#" data-toggle="modal" data-target="#notes">
+			<img id="info" style="position: fixed; top: 2em; right: 88em; z-index: 101;" src="icon/006-search.png"/>
+		</a>
+		
+		<!-- Using Guide Modal -->
+		<div id="notes" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">使用說明：</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>1.『輸入編號』：請任意輸入便於記憶的字元。</p>
+				<p>2.『亂數類型』：可自行選擇亂數產出的類型。</p>
+				<p>3.『亂數報表』：每次產出均會產生10組亂數，使用者可以任何方式挑選密碼，如：<br>
+					第一個字元是第"一"橫列，第"三"直欄，第二個字元是第"三"橫列，第"一"直欄，<br>
+					依此類推...
+				</p>
+				<p>4.『輸出結果』：自行輸入，可進行密碼強度驗證。</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		
+		  </div>
+		</div>
+		
+		<!--Context-->
+		<br>
+		<br>
+		<div class="container">
+			<div>
+			  	<h1 style="color: white; font-family: Arial; font-size: 5em; text-align: right; line-height: 20%;">
+			 		<strong>Key &nbsp;</strong><img style="vertical-align: bottom; margin:0 0 -0.4em -0.5em;" src="icon/keyEBEBA4.png"/></h1>
+			 	<h1 style="color: white; font-family: Arial; font-size: 5em; text-align: right; letter-spacing: -4px;">
+			 		<strong>Generator</strong></h1>	
+			</div>	
+		
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+		                    <h1 class="panel-title"><strong><img src="icon/shield.png"/>&nbsp;亂數條件設定</strong></h1>
+		            	</div>
+		
+		                <div class="panel-body">
+		   					<form class="form-horizontal">
+		   						<!--輸入編號FORM-->
+		   						<div class="form-group">
+		   							<label for="txtSeed" class="control-label col-sm-3">輸入編號：</label>
+		           					<div class="col-sm-9">
+		           						<input type="text" id="txtSeed" name="txtSeed" 
+		           							   value="" placeholder="請輸入任意字元，ex: 1234..." 
+		           							   pattern="^.{1,}$"  title="請輸入任意字元，ex: 1234..." required class="form-control"/>
+		           					</div>
+		       					</div>
+		       					
+		       					<!--亂數類型FORM-->
+		       					<div class="form-group">
+		   							<label for="randomType" class="control-label col-sm-3">亂數類型：</label>
+		           					<div class="col-sm-9">
+		               					<select id="randomType" name="randomType" class="form-control">
+										  <option value="123" selected>純數字（預設）</option>
+										  <option value="123abc">數字+小寫字母（字母不含小寫l, o）</option>
+										  <option value="123abcABC">數字+大小寫字母（字母不含大寫I, O與小寫l, o）</option>
+										  <option value="123abcABC!@#">數字+大小寫字母+符號（字母不含大寫I, O與小寫l, o）</option>
+										</select>
+		           					</div>
+		       					</div>
+
+	       						<div style="text-align: center;">
+			       					<div  style="display: inline-block; text-align; left;">
+										<input type="button" id="btnGo" value="產生亂數表" class="btn btn-info"/>
+										<input type="reset" id="reset" value="清　　　除" class="btn btn-warning"/>
+									</div>
+								</div>	
+													
+								<br><br><br>
+								<div></div>
+								<h4 style="text-align: center;"><strong><ins>使用說明：</ins></strong></h4>
+								<p>1.『輸入編號』：請任意輸入便於記憶的字元。</p>
+								<p>2.『亂數類型』：可自行選擇亂數產出的類型。</p>
+								<p>3.『亂數報表』：每次產出均會產生10組亂數，<br>使用者可以任何方式挑選密碼，如：<br>
+									第一個字元是第"一"橫列，第"三"直欄，<br>第二個字元是第"三"橫列，第"一"直欄，<br>依此類推...
+		
+								</p>
+								<p>4.『輸出結果』：自行輸入，可進行密碼強度驗證。</p>
+								<p><p><p><p>
+							</form>
+		                </div>
+					</div>
+				</div>
+					
+				<div class="col-sm-6">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+		                    <h1 class="panel-title"><strong><img src="icon/shieldgreen.png"/>&nbsp;亂數報表產出</strong></h1>
+		            	</div>
+		                
+		                <div class="panel-body">
+		                	<form id="myform" class="form-horizontal">
+		                		<div class="form-group">
+		                			<label for="myPassword" class="control-label col-sm-3">輸出結果：</label>
+									<div class="col-sm-9">
+										<input type="password" id="myPassword" name="myPassword" 
+		           							   value="" placeholder="Your output here!!!" 
+		           							   class="form-control"/>
+									</div>	
+		                		</div>
+							</form>
+		
+							<script type="text/javascript" src="js/jquery.min2.js"></script>
+							<script type="text/javascript" src="js/strength.js"></script>
+							<script type="text/javascript" src="js/js2.js"></script>
+		   					
+		   					<div id="randomTable" style="text-align: center;"></div><p><p><p><p>
+		                </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+
+		<!--fixed-bottom navbar-->	
+		<nav class="navbar navbar-inverse navbar-fixed-bottom">
+		  <div class="container-fluid">
+		      <p style="color: white; text-align: center;">Materials from Freepik & Flaticon</p>
+		      <h4 style="color: white; text-align: center;">Suggest using Google Chrome for your Best experience</h4>
+		  </div>
+		</nav>
+	
+		<script>
+			function floatInfo(){
+				var width = Math.floor(document.body.clientWidth / 32);
+				var height = Math.floor(document.body.clientHeight / 32);
+				var x = Math.floor(Math.random() *width);
+				var y = Math.floor(Math.random() *height);
+				info.style.right = x + "em";
+				info.style.top = y + "em";
+			}
+			
+			setInterval(floatInfo, 5000);
+			
+			$("#btnGo").click(function () {
+				if(txtSeed.checkValidity() == false){
+					alert("『輸入編號：請輸入任意字元，ex: 1234...』	" + txtSeed.validationMessage)
+				}
+				else{
+					var sPool;
+					var randomTypeVal= $("#randomType").val();
+					switch(randomTypeVal){
+						case '123abc':			// 數字+小寫字母: (去除 l, o)
+					    	sPool = "abcdefghijkmnpqrstuvwxyz0123456789";
+						　break;
+						case '123abcABC':		// 數字+大小寫字母: (去除 I, O, l, o)
+					    	sPool = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz0123456789";
+					    	break;
+				    	case '123abcABC!@#':	// 數字+大小寫字母+符號: (去除 I, O, l, o)
+					    	sPool = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz0123456789!%&@#$^*?_~";
+					    	break;
+						default:				// 純數字:
+							sPool = "0123456789";
+					}
+		
+					var result = "";
+						
+				    Math.seedrandom($("#txtSeed").val()); // 設定亂數種子
+					var iRandom = 0; var ch = "?";
+					for (iRow = 1; iRow <= 10; iRow++) {
+						var sLine = (iRow + 100).toString().substr(1, 2) + ": ";
+						for (iCol = 1; iCol <= 10; iCol++) {
+							iRandom = Math.floor(Math.random() * sPool.length);
+							ch = sPool.substr(iRandom, 1);
+							sLine += ch;
+						}
+						result += sLine + "<br>";
+					}
+					
+					$("#randomTable").html(result);
+				}
+			});
+		</script>
+	</body>
+</html>
