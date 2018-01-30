@@ -1,4 +1,4 @@
-版面設計以Bootstrap為基底，設計具RWD效果的網頁；另以JavaScript與JQuery分別控制網頁元素與亂數效果。
+**版面設計以`Bootstrap`為基底，設計具RWD效果的網頁；另以JavaScript與JQuery分別控制網頁元素與亂數效果。**
 
 《Demo》
 
