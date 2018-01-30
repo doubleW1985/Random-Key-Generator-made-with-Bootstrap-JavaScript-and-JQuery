@@ -11,3 +11,8 @@ http://davidbau.com/archives/2010/01/30/random_seeds_coded_hints_and_quintillion
 https://www.freepik.com/
 
 https://www.flaticon.com/
+
+#Bootstrap
+#RWD
+#JavaScript
+#JQuery
