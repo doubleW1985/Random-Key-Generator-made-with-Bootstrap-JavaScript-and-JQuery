@@ -1,4 +1,4 @@
-版面設計以`Bootstrap`為基底，設計具`RWD`效果的網頁；另以`JavaScript`與`JQuery`分別控制網頁元素與亂數效果。
+版面設計以`Bootstrap`為基底，設計具`RWD`效果的網頁；另以`JavaScript`與`jQuery`分別控制網頁元素與亂數效果。
 <br>
 <br>
 `《Demo》` 
@@ -11,4 +11,4 @@ https://www.youtube.com/watch?v=FQX5la4diLM&feature=youtu.be
 http://davidbau.com/archives/2010/01/30/random_seeds_coded_hints_and_quintillions.html<br>https://www.freepik.com/<br>https://www.flaticon.com/
 <br>
 <br>
-#Bootstrap<br>#RWD<br>#JavaScript<br>#JQuery
+#Bootstrap<br>#RWD<br>#JavaScript<br>#jQuery
