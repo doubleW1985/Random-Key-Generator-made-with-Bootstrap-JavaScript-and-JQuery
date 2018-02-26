@@ -1,3 +1,5 @@
+## Random Key Generator made with Bootstrap JavaScript and jQuery
+
 版面設計以`Bootstrap`為基底，設計具`RWD`效果的網頁；另以`JavaScript`與`jQuery`分別控制網頁元素與亂數效果。
 <br>
 <br>
